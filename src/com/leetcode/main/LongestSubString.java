@@ -93,7 +93,7 @@ public class LongestSubString {
                 // 前一个字符前的最长无重复子串长度
                 int preMaxSubLen = maxlenOfEndCharArr[i - 1];
                 //TODO
-
+                //Test
             } else {
                 maxlenOfEndCharArr[i] = i == 0 ? 1 : maxlenOfEndCharArr[i - 1] + 1;
                 lastPosition.put(str[i], i);
