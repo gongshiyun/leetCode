@@ -3,6 +3,7 @@ package com.leetcode.main;
 import java.util.HashMap;
 
 /**
+ * 349
  * 给定两个数组，写一个函数来计算它们的交集。
  *
  * 例子:
