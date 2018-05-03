@@ -7,9 +7,9 @@ package com.leetcode.entity;
  * @date: 2018/5/3 0:35
  */
 public class ListNode {
-    private int val;
+    public int val;
 
-    private ListNode next;
+    public ListNode next;
 
     public ListNode(int val){
         this.val = val;
