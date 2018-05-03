@@ -18,19 +18,15 @@ import java.util.Map;
  *
  * @author gongshiyun
  * @date: 2018/5/3 0:37
- *
  */
 public class LongestSubString {
     public static void main(String[] args) {
-        String test = "pwwkew";
-        System.out.println(lengthOfLongestSubstring1(test));
+        String test = "abba";
+        System.out.println(lengthOfLongestSubstring4(test));
     }
 
     /**
      * 暴力方法:第一时间想出
-     *
-     * @param s
-     * @return
      */
     public static int lengthOfLongestSubstring1(String s) {
         if (s.isEmpty()) {
@@ -101,4 +97,55 @@ public class LongestSubString {
         }
         return result;
     }
+
+    /**
+     * 简洁代码
+     * 思想:前后两个指针指向子串第一位和最后一位,
+     * 位置保存在map中,key为char,值为位置下标
+     */
+    private static int lengthOfLongestSubstring3(String s) {
+        //把字符串保存在字符数组中
+        HashMap<Character, Integer> map = new HashMap<>(16);
+        //无重复子串长度最大值
+        int max = 0;
+        //i为子串最后一位,j为子串第一位
+        //移动i同时记录字符在字符数组中的位置
+        for (int i = 0, j = 0; i < s.length(); i++) {
+            //当key存在时,说明前面出现了该字符
+            //这时需要改变子串头位置j的值,保证该子串不存在重复字符
+            if (map.containsKey(s.charAt(i))) {
+                //j的值为上次出现字符的后面一位,或者不变,取两者中的最大值
+                //这是因为避免j回退的问题,例如"abba"
+                j = Math.max(j, map.get(s.charAt(i)) + 1);
+            }
+            //结果为当前子串长度和max的最大值
+            max = Math.max(i - j + 1, max);
+            //更新字符位置
+            map.put(s.charAt(i), i);
+        }
+        return max;
+    }
+
+    /**
+     * 最优解
+     * 思想与上面方法类似,区别在于用list保存字符位置
+     */
+    public static int lengthOfLongestSubstring4(String s) {
+        int[] list = new int[256];
+        int previous = -1, right = 0, max_len = 0;
+        for (int i = 0; i < list.length; i++) {
+            list[i] = -1;
+        }
+        while (right < s.length()) {
+            char c = s.charAt(right);
+            //避免previous子串头位置回退
+            if (list[(int) c] > previous)
+                previous = list[(int) c];
+            max_len = Math.max(max_len, right - previous);
+            list[(int) c] = right++;
+        }
+        return max_len;
+    }
+
+
 }
