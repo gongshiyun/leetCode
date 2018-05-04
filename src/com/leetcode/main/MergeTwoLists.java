@@ -29,7 +29,7 @@ public class MergeTwoLists {
         l4.setNext(l5);
         l5.setNext(l6);
 
-        ListNode result = mergeTwoLists(l1,l2);
+        ListNode result = mergeTwoListsByRecursive(l1,l4);
         System.out.print(result.val);
         while (result.getNext() != null) {
             System.out.print(" -> ");
@@ -92,5 +92,22 @@ public class MergeTwoLists {
         curNode.next = l1 == null ? l2 : l1;
 
         return headNode.next;
+    }
+
+    public static ListNode mergeTwoListsByRecursive(ListNode l1,ListNode l2){
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+
+        if (l1.val < l2.val) {
+            l1.next = mergeTwoListsByRecursive(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = mergeTwoListsByRecursive(l2.next, l1);
+            return l2;
+        }
     }
 }

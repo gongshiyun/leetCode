@@ -91,11 +91,60 @@ public class MergeKLists {
      * 思路:把所有链表头结点最小值保存在排序数组中,每次取出其中最小值插入结果链表
      * 并把这个最小值所在链表头指向其下一位,再把下一位的值插入排序数组中进行排序
      * 如此循环
-     * @param lists
-     * @return
      */
     public static ListNode mergeKListsNew(ListNode[] lists) {
         //TODO
         return null;
+    }
+
+    /**
+     * 归并排序思想
+     */
+    public static ListNode mergeKListsFast(ListNode[] lists) {
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
+        return work(lists, 0, lists.length - 1);
+    }
+
+    /**
+     * 利用归并排序的思想
+     * @param lists
+     * @param left
+     * @param right
+     * @return
+     */
+    private static ListNode work(ListNode[] lists, int left, int right) {
+        int mid = (left + right) / 2;
+        if (left < right) {
+            ListNode l1 = work(lists, left, mid);
+            ListNode l2 = work(lists, mid + 1, right);
+            return mergeTwo(l1, l2);
+        }
+        //如果left==right则直接返回左面的链表
+        return lists[left];
+    }
+
+    /**
+     * 合并两个的方法
+     * @param l1
+     * @param l2
+     * @return
+     */
+    private static ListNode mergeTwo(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+
+        if (l1.val < l2.val) {
+            l1.next = mergeTwo(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = mergeTwo(l2.next, l1);
+            return l2;
+        }
     }
 }
