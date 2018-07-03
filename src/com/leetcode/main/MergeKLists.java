@@ -100,7 +100,7 @@ public class MergeKLists {
     /**
      * 归并排序思想
      */
-    public static ListNode mergeKListsFast(ListNode[] lists) {
+    public static ListNode mergeKListsByRecursive(ListNode[] lists) {
         if (lists == null || lists.length == 0) {
             return null;
         }

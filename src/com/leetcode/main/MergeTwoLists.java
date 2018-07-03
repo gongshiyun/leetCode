@@ -2,8 +2,6 @@ package com.leetcode.main;
 
 import com.leetcode.entity.ListNode;
 
-import java.util.List;
-
 /**
  * 将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
  *
@@ -28,8 +26,7 @@ public class MergeTwoLists {
         l2.setNext(l3);
         l4.setNext(l5);
         l5.setNext(l6);
-
-        ListNode result = mergeTwoListsByRecursive(l1,l4);
+        ListNode result = mergeTwoListsByRecursive(l1, l4);
         System.out.print(result.val);
         while (result.getNext() != null) {
             System.out.print(" -> ");
@@ -47,10 +44,10 @@ public class MergeTwoLists {
         p2.next = l2;
         int v1;
         int v2;
-        while (p1.next != null && p2.next != null){
+        while (p1.next != null && p2.next != null) {
             v1 = p1.next.val;
             v2 = p2.next.val;
-            if (v1 < v2){
+            if (v1 < v2) {
                 curNode.next = new ListNode(v1);
                 p1 = p1.next;
             } else {
@@ -60,7 +57,7 @@ public class MergeTwoLists {
             curNode = curNode.next;
         }
 
-        if (p1.next != null){
+        if (p1.next != null) {
             curNode.next = p1.next;
         } else if (p2.next != null) {
             curNode.next = p2.next;
@@ -70,16 +67,16 @@ public class MergeTwoLists {
     }
 
     public static ListNode mergeTwoLists2(ListNode l1, ListNode l2) {
-        if (l1 == null){
+        if (l1 == null) {
             return l2;
         }
-        if (l2 == null){
+        if (l2 == null) {
             return l1;
         }
         ListNode headNode = new ListNode(0);
         ListNode curNode = headNode;
-        while (l1 != null && l2 != null){
-            if (l1.val < l2.val){
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
                 curNode.next = new ListNode(l1.val);
                 l1 = l1.next;
             } else {
@@ -94,7 +91,7 @@ public class MergeTwoLists {
         return headNode.next;
     }
 
-    public static ListNode mergeTwoListsByRecursive(ListNode l1,ListNode l2){
+    public static ListNode mergeTwoListsByRecursive(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
         }
