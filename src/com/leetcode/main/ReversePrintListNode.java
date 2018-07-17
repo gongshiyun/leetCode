@@ -15,7 +15,7 @@ import java.util.Stack;
 public class ReversePrintListNode {
     private static ArrayList<Integer> arr = new ArrayList<>();
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         ListNode l1 = new ListNode(1);
         ListNode l2 = new ListNode(2);
         ListNode l3 = new ListNode(3);
@@ -32,27 +32,28 @@ public class ReversePrintListNode {
         //printListFromTailToHead(l1);
         //ArrayList<Integer> arr = getListFromTailToHead(l1);
         ArrayList<Integer> arr = printListFromTailToHeadByStack(l1);
-        if (arr != null){
-            for (int val : arr){
+        if (arr != null) {
+            for (int val : arr) {
                 System.out.println(val);
             }
         }
     }
 
-    public static ArrayList<Integer> getListFromTailToHead(ListNode listNode){
+    public static ArrayList<Integer> getListFromTailToHead(ListNode listNode) {
         ArrayList<Integer> arr = new ArrayList<>();
-        printListFromTailToHead(listNode,arr);
+        printListFromTailToHead(listNode, arr);
         return arr;
     }
 
     /**
      * 使用递归方法
+     *
      * @param listNode
      * @param arr
      */
-    private static void printListFromTailToHead(ListNode listNode,ArrayList<Integer> arr){
-        if (listNode != null){
-            printListFromTailToHead(listNode.next,arr);
+    private static void printListFromTailToHead(ListNode listNode, ArrayList<Integer> arr) {
+        if (listNode != null) {
+            printListFromTailToHead(listNode.next, arr);
             arr.add(listNode.val);
             //System.out.println(listNode.val);
         }
@@ -60,22 +61,23 @@ public class ReversePrintListNode {
 
     /**
      * 使用栈
+     *
      * @param listNode
      * @return
      */
-    private static ArrayList<Integer> printListFromTailToHeadByStack(ListNode listNode){
+    private static ArrayList<Integer> printListFromTailToHeadByStack(ListNode listNode) {
         Stack<Integer> stack = new Stack<>();
         ArrayList<Integer> result = new ArrayList<>();
 
-        while(listNode != null){
+        while (listNode != null) {
             stack.push(listNode.val);
             listNode = listNode.next;
         }
 
-         while (!stack.empty()){
+        while (!stack.empty()) {
             result.add(stack.pop());
-         }
+        }
 
-         return result;
+        return result;
     }
 }
