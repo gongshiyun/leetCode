@@ -11,13 +11,28 @@ import java.util.Stack;
  * @date 2018/7/19
  */
 public class QueueByTwoStacks {
+    /**
+     * stack1作为入队列
+     */
     Stack<Integer> stack1 = new Stack<Integer>();
+
+    /**
+     * stack2作为出队列
+     */
     Stack<Integer> stack2 = new Stack<Integer>();
 
+    /**
+     * 入队列操作,入栈stack1
+     * @param node
+     */
     public void push(int node) {
         stack1.push(node);
     }
 
+    /**
+     * 当stack2为空时,stack1全部出栈到stack2,stack2再出栈顶部元素
+     * @return
+     */
     public int pop() {
         if (stack1.empty() && stack2.empty()) {
             throw new RuntimeException("队列为空");
