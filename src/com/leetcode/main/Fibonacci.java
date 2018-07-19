@@ -2,8 +2,7 @@ package com.leetcode.main;
 
 /**
  * @author gongshiyun
- * @Description
- * 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。
+ * @Description 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。
  * n<=39
  * @date 2018/7/19
  */
@@ -11,6 +10,7 @@ public class Fibonacci {
 
     /**
      * 递归法：重复计算情况过多
+     *
      * @param n
      * @return
      */
@@ -23,10 +23,11 @@ public class Fibonacci {
 
     /**
      * 使用循环
+     *
      * @param n
      * @return
      */
-    public int fibonacciByCycle(int n){
+    public int fibonacciByCycle(int n) {
         if (n < 0) {
             throw new RuntimeException("参数不能为负");
         }
